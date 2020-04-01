@@ -22,46 +22,46 @@
 
 <script>
 export default {
-  name: 'login',
-  data () {
-    return {
-      username: '',
-      password: '',
-      email: ''
-    }
-  },
-  created () {
-    this.$http.get('/home', res => {
-      console.log(res)
-    })
-  },
-  methods: {
-    registry () {
-      if (!this.username || !this.password) return
-      this.$http.post('/api/user/registry', {
-        username: this.username,
-        password: this.password
-      }, res => {
-        console.log(res)
-      })
-    },
-    login () {
-      if (!this.username || !this.password) return
-      this.$http.post('/api/user/login', {
-        username: this.username,
-        password: this.password
-      }, res => {
-        console.log(res)
-      })
-    },
-    loginout () {
-      this.$http.get('/api/user/loginout', res => {
-        console.log(res)
-        location.reload()
-      })
-    }
-  }
-}
+	name: 'login',
+	data () {
+		return {
+			username: '',
+			password: '',
+			email: ''
+		};
+	},
+	created () {
+		this.$http('/home', res => {
+			console.log(res);
+		});
+	},
+	methods: {
+		registry () {
+			if (!this.username || !this.password) return;
+			this.$http.post('/user/registry', {
+				username: this.username,
+				password: this.password
+			}, res => {
+				console.log(res);
+			});
+		},
+		login () {
+			if (!this.username || !this.password) return;
+			this.$http.post('/user/login', {
+				username: this.username,
+				password: this.password
+			}, res => {
+				console.log(res);
+			});
+		},
+		loginout () {
+			this.$http('/user/loginout', res => {
+				console.log(res);
+				location.reload();
+			});
+		}
+	}
+};
 </script>
 
 <style>

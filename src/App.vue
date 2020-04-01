@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
     <router-view/>
   </div>
 </template>

@@ -6,17 +6,21 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prebuild": "",
+    "postbuild": ""
   },
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "core-js": "^3.6.4",
+    "marked": "^0.8.2",
     "mysql": "^2.18.1",
+    "prismjs": "^1.19.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2",
-    "z-wheel": "0.0.1"
+    "z-wheel-0201": "0.0.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",

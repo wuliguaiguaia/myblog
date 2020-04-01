@@ -1,15 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+import article from './modules/article/controller';
+import category from './modules/category/controller';
+import comment from './modules/comment/controller';
+import feedback from './modules/feedback/controller';
+import user from './modules/user/controller';
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+	modules: {
+		article,
+		category,
+		comment,
+		feedback,
+		user
+	}
+});

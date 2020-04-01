@@ -4,11 +4,11 @@
             <transition-group v-on:leave="sentleave" name="fade" appear>
                 <div class="sentence center" v-if="showSentence" key="sen">
                   <p>自从遇见了你，</p>
-                  <div>世界所有没有终成具象。</div>
+                  <div>世界所有终成具象。</div>
                 </div>
                 <div class="buttons center" v-if="showBtns" key="btn">
-                  <z-button>我的博客</z-button>
-                  <z-button>xxxx</z-button>
+                  <z-button @click="showBlog">我的博客</z-button>
+                  <z-button>推荐阅读</z-button>
                 </div>
             </transition-group>
         </div>
@@ -17,26 +17,34 @@
 
 <script>
 export default {
-  name: 'home',
-  data () {
-    return {
-      showSentence: true,
-      showBtns: false
-    }
-  },
-  mounted () {
-    setTimeout(() => {
-      this.showSentence = false
-    }, 2000)
-  },
-  methods: {
-    sentleave (el, done) {
-      setTimeout(() => {
-        this.showBtns = true
-      }, 500)
-    }
-  }
-}
+	name: 'home',
+	data () {
+		return {
+			showSentence: true,
+			showBtns: false
+		};
+	},
+	mounted () {
+		setTimeout(() => {
+			this.showSentence = false;
+		}, 2000);
+	},
+	created () {
+		this.$http.post('/article/add', { title:'312' ,content:'sA'}).then(res => {
+			console.log(res);
+		});
+	},
+	methods: {
+		sentleave () {
+			setTimeout(() => {
+				this.showBtns = true;
+	    }, 500);
+		},
+		showBlog () {
+	    this.$router.push({ path: '/blog' });
+		}
+	}
+};
 </script>
 
 <style lang="scss" scoped>
