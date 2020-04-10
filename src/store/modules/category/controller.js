@@ -2,8 +2,8 @@ import $http from '@/utils/axios/index';
 export default {
 	namespaced: true,
 	state: {
-		list: [],
-		total: 0,
+		categoryList: [],
+		categoryTotal: 0,
 		curCategory: null
 	},
 	getters: {},
@@ -28,13 +28,12 @@ export default {
 	mutations: {
 		setCategoryList(state, {data, newData}) {
 			if (newData) {
-				state.list.push(newData);
-				state.total++;
+				state.categoryList.push(newData);
+				state.categoryTotal++;
 				return;
 			}
-			
-			state.total = data.total || 0;
-			state.list = data.list;
+			state.categoryTotal = data.total || 0;
+			state.categoryList = data.list;
 		},
 		setCurCategory(state, data) {
 			state.curCategory = data;

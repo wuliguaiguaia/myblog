@@ -1,12 +1,12 @@
 <template>
   <div class="article-list">
     <div class="add-article">
-      <z-button @click='_postArticle'>新增文章</z-button>
+      <span @click='_postArticle'><i class="el-icon-plus"></i>新增文章</span>
     </div>
-    <div> 共有{{total}}篇文章</div>
-    <template v-if="list">
-      <div class="article-item" 
-        v-for="(article, idx) of list" 
+    <div> 共有{{articleTotal}}篇文章</div>
+    <template v-if="articleList">
+      <div v-for="(article, idx) of articleList" 
+		:class="{'article-item': true, 'active': curArticle._id === article._id}" 
         :key="idx"
         @click="handleSelect(article)">
         {{article.title}}
@@ -41,11 +41,10 @@ export default {
 	},
 	computed: {
 		...mapStateArticle([
-			'list',
-			'total',
+			'articleList',
+			'articleTotal',
 			'curArticle'
 		]),
-		
 	},
 	watch: {
 		curCategory (val) {
@@ -56,7 +55,7 @@ export default {
 				this.defaultInfo.category = val._id;
 			}
 		},
-		list (val) {
+		articleList (val) {
 			if (val) {
 				this.setCurArticle(val[0]);
 			}
@@ -87,10 +86,39 @@ export default {
 
 <style lang="scss" scoped>
 .article-list{
-  width: 20%;
-  border: 1px solid red;
+  width: 300px;
+  padding: 20px;
+  border-right: 1px solid rgb(218, 218, 218);
 }
-.article-item{
-  border-bottom: 1px solid #333;
+
+.add-article {
+	width: 100%;
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgb(195, 195, 195);
+	span {
+		display: inline-block;
+		i {
+			margin-right: 10px;
+			font-weight: bold;
+		}
+	}
+}
+
+.article-item {
+	border-left: 3px solid transparent;
+	border-bottom: 1px solid rgb(221, 220, 220);
+	padding: 20px;
+	margin: 0 -20px;
+	
+	&:hover,
+	&:active {
+		background: rgba(0,0,0, .05);
+		border-left: 3px solid rgb(233, 123, 123);
+	}
+
+	&.active {
+		background: rgba(0,0,0, .05);
+		border-left: 3px solid rgb(233, 123, 123);
+	}
 }
 </style>

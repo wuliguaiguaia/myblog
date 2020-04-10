@@ -1,6 +1,5 @@
 <template>
   <div>home
-
       <form class="register">
           <label for="username">
                 用户名：<input type="text" v-model="username">

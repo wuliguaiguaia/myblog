@@ -132,3 +132,69 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+p {
+	line-height: 1.5;
+	margin-bottom: 10px;
+}
+
+i.snip {
+	padding: 0 6px;
+    font-style: normal;
+    color: #f53080;
+    background: #f1f1f1;
+    border-radius: 2px;
+    margin: 0 5px;
+}
+
+a {
+	color: rgb(61, 61, 61);
+    text-decoration: none;
+	position: relative;
+	color: #327aea;
+	span {	
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background: #327aea;
+		transform: scaleX(0);
+		transform-origin: 50%;
+		transition: transform ease-in-out .3s;
+	}
+	&:hover{
+		color: #327aea;
+		span {
+			transform: scaleX(1)
+		}
+	}
+	&.normal {
+		color: #333;
+		transition: color ease-in .6s;
+		span {
+			background: #f53080;
+		}
+		&:hover{
+			color: #f53080;
+		}
+	}
+}
+
+pre {
+	padding: 10px;
+	box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+	margin-bottom: 16px;
+	font-size: 13px;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}

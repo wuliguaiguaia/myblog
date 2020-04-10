@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ZWheel from 'z-wheel-0201/lib/z-wheel-0201.common';
+// import ZWheel from 'z-wheel-0201/lib/z-wheel-0201.common';
 
 const Axios = axios.create({
 	baseURL: 'http://localhost:8080/api',
@@ -10,7 +10,7 @@ const Axios = axios.create({
 
 Axios.interceptors.request.use( 
 	config => {
-		ZWheel.Loading.service({});
+		// ZWheel.Loading.service({});
 		return config;
 	}, 
 	err => {
@@ -20,7 +20,7 @@ Axios.interceptors.request.use(
 
 Axios.interceptors.response.use( 
 	response => {
-		ZWheel.Loading.service.close();
+		// ZWheel.Loading.service.close();
 
 		if (!response) Promise.reject('no response');
 

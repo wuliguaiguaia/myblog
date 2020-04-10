@@ -1,9 +1,12 @@
 <template>
-  <div> 
-    <z-button v-for="(item, idx) in list" 
-      :key="idx"
-      @click="$router.push({name: item.path})"
-    >{{item.name}}</z-button>
+  <div class=""> 
+	<div class="nav">
+		<z-button v-for="(item, idx) in list" 
+		:key="idx"
+		plain
+		@click="$router.push({name: item.path})"
+		>{{item.name}}</z-button>
+	</div>
     <router-view/>
   </div>
 </template>
@@ -38,8 +41,18 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-#ss{
-  border: 1px solid red;
+.nav {
+	position: fixed;
+	background: rgba(0,0,0,.3);
+	bottom: 0;
+	left: 0;
+	cursor: pointer;
+	z-index: 99999;
+	display: flex;
+	flex-direction: column;
+	.z-button+.z-button{
+		margin: 0;
+	}
 }
 
 </style>

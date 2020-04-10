@@ -1,8 +1,3 @@
-const path = require('path');
-function resolve (dir) {
-	return path.resolve(__dirname, dir);
-}
-
 module.exports = {
 	//   publicPath: process.env.NODE_ENV === 'production'
 	//     ? '/'
@@ -20,7 +15,7 @@ module.exports = {
 				pathRewrite: {
 					'^/api': '/api'
 				}
-			},
+			}
 		}
 	},
 	configureWebpack: () => {
@@ -34,13 +29,25 @@ module.exports = {
 			};
 		}
 	},
-	// productionSourceMap: true,
 	css: {
 		extract: true,
 		sourceMap: true
 	},
 	chainWebpack: config => {
-		config.resolve.alias
-			.set('@', resolve('./src'));
+		const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
+		types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)));
 	}
 };
+
+function addStyleResource (rule) {
+	const prefix = './node_modules/z-wheel-0201/lib/styles/';
+	rule.use('style-resource')
+		.loader('style-resources-loader')
+		.options({
+			patterns: [
+				prefix + 'common/var.scss',
+				prefix + 'common/transition.scss', // ps: transition引入无效果，
+				prefix + 'common/animation.scss'
+			],
+		});
+}

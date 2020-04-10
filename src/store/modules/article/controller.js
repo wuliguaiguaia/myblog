@@ -3,8 +3,8 @@ import $http from '@/utils/axios/index';
 export default {
 	namespaced: true,
 	state: {
-		list: [],
-		total: 0,
+		articleList: [],
+		articleTotal: 0,
 		curArticle: null
 	},
 	getters: {},
@@ -38,19 +38,19 @@ export default {
 	mutations: {
 		setArticleList(state, { data, newData, empty }) {
 			if (newData) {
-				state.list.push(newData);
-				state.total++;
+				state.articleList.push(newData);
+				state.articleTotal++;
 				return;
 			}
 
 			if (empty) {
-				state.total = 0;
-				state.list = [];
+				state.articleTotal = 0;
+				state.articleList = [];
 				return;
 			}
 
-			state.total = data.total || 0;
-			state.list.push(...data.list);
+			state.articleTotal = data.total || 0;
+			state.articleList.push(...data.list);
 		},
 		setCurArticle(state, data) {
 			state.curArticle = data;

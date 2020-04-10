@@ -1,18 +1,22 @@
 <template>
   <div class="article-manage flex">
       <div class="left-menu">
+		<z-button class="back" float @click="$router.push({path: '/'})">回到首页</z-button>
         <div class="add-category">
-            <z-button @click="_showNewForm">新增分类</z-button>
+			<span class="button" @click="_showNewForm"><i class="el-icon-plus"></i>新增分类</span>
             <div v-if="isShowNew" >
                 <input type="text" ref="input" v-model="newCategory">
-                <z-button @click="_postCategory">添加</z-button>
-                <z-button @click="_showNewForm(0)">取消</z-button>
+                <z-button type="primary" size="mini" class="add" @click="_postCategory">添加</z-button>
+                <z-button type="text" size="mini"  @click="_showNewForm(0)">取消</z-button>
             </div>
-			<z-button @click="_deleteCategory">删除分类</z-button>
-			<z-button @click="_putCategory">修改分类</z-button>
+			<!-- <div class="menu">
+				<z-button type="text" @click="_deleteCategory">删除</z-button>
+				<z-button type="text" @click="_putCategory">修改</z-button>
+			</div> -->
         </div>
-        <div class="list">
-            <div v-for="(item, idx) in list" 
+        <div class="category-list">
+            <div v-for="(item, idx) in categoryList" 
+				:class="{'category-item': true, 'active': curCategory._id === item._id}"
                 :key="idx" 
                 @click="_setCurCategory(item)"
             >{{item.value}}</div>
@@ -44,19 +48,18 @@ export default {
 	},
 	created () {
 		this.getCategoryList();
-		
 	},
 	computed: {
 		...mapStateCategory([
-			'list',
-			'total',
+			'categoryList',
+			'categoryTotal',
 			'curCategory'
 		])
 	},
 	watch: {
-		list(val){
+		categoryList(val){
 			if (val) {
-				this.setCurCategory(this.list[0]);
+				this.setCurCategory(this.categoryList[0]);
 			}
 		}
 	},
@@ -83,6 +86,7 @@ export default {
 			}
 		},
 		_postCategory () {
+			if(!this.newCategory.trim()) return;
 			this.postCategory(this.newCategory);
 			this.newCategory = '';
 		},
@@ -100,6 +104,59 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.back {
+	width: 100%;
+}
+.article-manage {
+	font-size: 14px;
+	position: relative;
+	.left-menu {
+		width: 200px;
+		min-width: 200px;
+		height: 100vh;
+		overflow-y: auto;
+		background-color: #404040;
+		color: #f2f2f2;
+		box-sizing: border-box;
+		padding: 20px;
+		cursor: pointer;
+	}
+	.add-category{
+		margin-top: 10px;
+
+		input {
+			margin-bottom: 10px;
+		}
+	}
+	.button {
+		margin: 10px 0;
+		display: inline-block;
+		i {
+			margin-right: 10px;
+			font-weight: bold;
+		}
+	}
+	.category-list {
+		margin-top: 10px;
+	}
+	.category-item {
+		margin: 0 -20px;
+		padding: 10px 0px 10px 20px;
+		border-left: 3px solid transparent;
+		
+		&:hover,
+		&:active {
+			background: rgba(0,0,0, .3);
+			border-left: 3px solid #ddd;
+		}
+
+		&.active {
+			background: rgba(0,0,0, .3);
+			border-left: 3px solid #ddd;
+		}
+	}
+}
+
 
 </style>

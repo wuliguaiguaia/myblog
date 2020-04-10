@@ -20,4 +20,10 @@ export const heightlight = (dom) => {
 			el.innerHTML = Prism.highlight(text, Prism.languages[key], key);
 		}
 	});
+
+	const achors = dom.querySelectorAll('a');
+	achors.forEach(link => {
+		link.appendChild(document.createElement('span'));
+	});
+
 };
